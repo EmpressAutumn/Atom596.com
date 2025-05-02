@@ -14,7 +14,6 @@ function checkMobile() {
         document.getElementById("content").style.width = "calc(70% - 18px)";
         document.getElementById("content").style.left = "calc(15% + 9px)";
     }
-    console.log(window.innerWidth/window.innerHeight);
 }
 
 insertTopbar();
