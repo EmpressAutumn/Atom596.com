@@ -1,14 +1,24 @@
 body {
-    background: #0D0D10;
-    background-image: url("../background.png");
-    background-repeat: repeat;
+    margin: 0 9px 9px;
+
+    background: #0D0D10 url("../background.png") repeat;
     background-size: 3200px 3200px;
     image-rendering: pixelated;
 
     font-family: Cambria, serif;
 }
 
-h1 {
+#title {
+    margin: 18px 0 0;
+
     text-align: center;
     color:palegoldenrod;
+}
+
+#content {
+    position: absolute;
+    left: 15%;
+
+    width: 70%;
+    margin: 0;
 }
