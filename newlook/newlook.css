@@ -1,0 +1,13 @@
+body {
+    background-image: url("background.png");
+    background-repeat: repeat;
+    background-size: 3200px 3200px;
+    image-rendering: pixelated;
+
+    font-family: Cambria, serif;
+}
+
+h1 {
+    text-align: center;
+    color:palegoldenrod;
+}
