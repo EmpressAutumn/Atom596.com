@@ -8,11 +8,11 @@ function insertTopbar() {
 
 function checkMobile() {
     if(window.innerWidth/window.innerHeight < 1) {
-        document.getElementById("content").style.width = "calc(100% - 18px)";
-        document.getElementById("content").style.left = "calc(0% + 9px)";
+        document.getElementById("content").style.width = "100%";
+        document.getElementById("content").style.left = "0%";
     } else {
-        document.getElementById("content").style.width = "calc(70% - 18px)";
-        document.getElementById("content").style.left = "calc(15% + 9px)";
+        document.getElementById("content").style.width = "70%";
+        document.getElementById("content").style.left = "15%";
     }
 }
 

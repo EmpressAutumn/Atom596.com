@@ -16,6 +16,6 @@ body {
 }
 
 #content {
-    position: absolute;
+    position: relative;
     margin: 0;
 }
