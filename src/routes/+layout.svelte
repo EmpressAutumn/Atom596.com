@@ -9,4 +9,6 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
+<h1>Atom596.com</h1>
+
 {@render children()}

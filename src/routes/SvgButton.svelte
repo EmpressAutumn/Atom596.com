@@ -7,57 +7,33 @@
         on:click={onClick}
 >
     <svg
-            width="200"
-            height="60"
-            viewBox="0 0 200 60"
-            class="overflow-visible"
-            xmlns="http://www.w3.org/2000/svg"
+        width="240"
+        height="80"
+        viewBox="0 0 240 80"
+        class="overflow-visible"
     >
-        <!-- Background rectangle -->
-        <rect
-                x="0"
-                y="0"
-                width="200"
-                height="60"
-                rx="10"
-                class="fill-blue-600 transition-colors duration-300
-             group-hover:fill-blue-700"
+        <path
+            style="fill:none;stroke:#d6a929;stroke-width:1"
+            d="M 45,75 10,40 45,5 195,5 230,40 195,75 45,75"
         />
-
-        <!-- Left sliding panel -->
-        <rect
-                x="0"
-                y="0"
-                width="80"
-                height="60"
-                class="fill-blue-500 transition-transform duration-300
-             group-hover:-translate-x-[10px]"
+        <path
+            style="fill:none;stroke:#d6a929;stroke-width:1"
+            d="M 40,70 10,40 40,10"
+            class="transition-transform duration-300 group-hover:-translate-x-[10px]"
         />
-
-        <!-- Right sliding panel -->
-        <rect
-                x="120"
-                y="0"
-                width="80"
-                height="60"
-                class="fill-blue-500 transition-transform duration-300
-             group-hover:translate-x-[10px]"
+        <path
+            style="fill:none;stroke:#d6a929;stroke-width:1"
+            d="M 200,10 230,40 200,70"
+            class="transition-transform duration-300 group-hover:translate-x-[10px]"
         />
-
-        <!-- Text (slot contents) -->
         <foreignObject
-                x="0"
-                y="0"
-                width="200"
-                height="60"
-                class="pointer-events-none"
+            x="20"
+            y="5"
+            width="200"
+            height="70"
+            class="pointer-events-none"
         >
-            <div
-                    class="w-full h-full flex items-center justify-center
-               text-white font-semibold text-lg
-               transition-transform duration-300
-               group-hover:-translate-y-[2px]"
-            >
+            <div class="w-full h-full flex items-center justify-center text-white font-semibold text-lg" >
                 <slot>Button</slot>
             </div>
         </foreignObject>
