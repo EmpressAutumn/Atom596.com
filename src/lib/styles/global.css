@@ -1,0 +1,28 @@
+/* Common Style Code */
+
+@import "tailwindcss";
+
+/* Park Lane NF by Nick Curtis: https://www.1001fonts.com/parklane-font.html */
+@font-face {
+    font-family: "ParkLaneNF";
+    src: url("/fonts/ParkLaneNF.ttf");
+}
+
+html {
+    background: rgb(31, 31, 31);
+}
+
+p {
+    color: antiquewhite;
+}
+
+a {
+    color: goldenrod;
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: xxx-large;
+    font-family: "ParkLaneNF", serif;
+    color: burlywood;
+}
