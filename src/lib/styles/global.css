@@ -10,9 +10,6 @@
 
 html {
     background: rgb(31, 31, 31);
-
-    /* Currently using SENGOKU Cursors: https://www.rw-designer.com/cursor-set/sengoku */
-    cursor: url("/cursors/normal.cur") 0 0, auto;
 }
 
 p {
