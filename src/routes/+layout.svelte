@@ -3,6 +3,8 @@
     import "$lib/styles/global.css"
 
 	let { children } = $props();
+
+    export const prerender = true;
 </script>
 
 <svelte:head>
