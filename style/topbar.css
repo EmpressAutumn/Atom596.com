@@ -1,0 +1,13 @@
+.topbar {
+    margin: 18px 0;
+
+    width: auto;
+    border: 3px solid lightslategray;
+    background-color: silver;
+    text-align: center;
+}
+
+.links {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

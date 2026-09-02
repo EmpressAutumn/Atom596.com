@@ -1,0 +1,21 @@
+body {
+    margin: 0 9px 9px;
+
+    background: #0D0D10 url("/image/background.png") repeat;
+    background-size: 3200px 3200px;
+    image-rendering: pixelated;
+
+    font-family: Cambria, serif;
+}
+
+#title {
+    margin: 18px 0 0;
+
+    text-align: center;
+    color: palegoldenrod;
+}
+
+#content {
+    position: relative;
+    margin: 0;
+}
