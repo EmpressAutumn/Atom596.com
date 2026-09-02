@@ -26,7 +26,7 @@ window.addEventListener("load", async function () {
                         title = `<p class="author-date"><b>${t}</b></p>`
                     } else {
                         let t = articles[article].title;
-                        title = `<p class="author-date"><a href="/devnotes/?note=${article}"><b>${t}</b></a></p>`
+                        title = `<p class="author-date"><a href="/devnotes/index.html?note=${article}"><b>${t}</b></a></p>`
                     }
                     const author = articles[article].author;
                     const date = articles[article].date;
