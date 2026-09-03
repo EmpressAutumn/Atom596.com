@@ -36,7 +36,7 @@
             <p>Atom596.com</p>
         </div> -->
         <NavButton text="Home" onClick={() => { window.location.href = "/"; }} />
-        <NavButton text="Dev Notes" onClick={() => { window.location.href = "/devnotes/"; }} />
+        <NavButton text="Dev Notes" onClick={() => { window.location.href = "/devnotes"; }} />
         <!-- <div class="navbar-extra">
             <NavButton text="Settings" onClick={() => {}} />
         </div> -->
