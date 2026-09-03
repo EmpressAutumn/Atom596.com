@@ -6,8 +6,8 @@
     export let onClick: () => void = () => {};
 </script>
 
-<button class="group relative p-3 select-none cursor-pointer" on:click={onClick} >
-    <svg width={width} height="60" viewBox={`0 0 ${width} 60`} class="overflow-visible" >
+<button class="group relative p-3 select-none cursor-pointer" on:click={onClick}>
+    <svg width={width} height="60" viewBox={`0 0 ${width} 60`} class="overflow-visible">
         <!-- Text Polygon -->
         <polygon id="text-area" points={`28,10 8,30 28,50 ${width-28},50 ${width-8},30 ${width-28},10`} />
 

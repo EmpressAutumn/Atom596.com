@@ -1,3 +1,12 @@
+button {
+    padding: 0;
+    margin: 0 20px 20px;
+}
+
+svg {
+    display: block;
+}
+
 #text-area {
     fill: maroon;
     stroke: goldenrod;
