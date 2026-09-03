@@ -43,7 +43,7 @@
                         </div>`;
                         })
                     }
-                    fetch("/devnotes/storytelling.md")
+                    fetch(`/devnotes/${urlArticle}.md`)
                         .then( response => { return response.text(); })
                         .then( text => {
                             articleMarkdown = text;
