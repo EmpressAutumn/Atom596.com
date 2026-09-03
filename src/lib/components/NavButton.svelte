@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "$lib/styles/NavButton.css"
+    import "$lib/components/styles/NavButton.css";
 
     export let text = "Button";
     export let width = 200;

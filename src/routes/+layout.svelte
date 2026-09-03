@@ -1,7 +1,7 @@
 <script lang="ts">
 	import favicon from "$lib/assets/favicon.svg";
-    import "$lib/styles/global.css"
-    import NavButton from "./elements/NavButton.svelte";
+    import "$lib/assets/styles/global.css";
+    import NavButton from "$lib/components/NavButton.svelte";
     import { onMount } from "svelte";
 
 	let { children } = $props();
@@ -36,7 +36,7 @@
             <p>Atom596.com</p>
         </div> -->
         <NavButton text="Home" onClick={() => { window.location.href = "/"; }} />
-        <NavButton text="OLD: Dev Notes" onClick={() => { window.location.href = "/devnotes/index.html"; }} />
+        <NavButton text="Dev Notes" onClick={() => { window.location.href = "/devnotes/"; }} />
         <!-- <div class="navbar-extra">
             <NavButton text="Settings" onClick={() => {}} />
         </div> -->
