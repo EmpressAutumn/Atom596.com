@@ -2,10 +2,9 @@
 	import favicon from '$lib/assets/favicon.svg';
     import "$lib/styles/global.css"
     import NavButton from "./elements/NavButton.svelte";
+    import { onMount } from "svelte";
 
 	let { children } = $props();
-
-    import { onMount } from "svelte";
 
     let topbar: HTMLDivElement;
 
@@ -32,11 +31,13 @@
 
 <div id="top-section" bind:this={topbar}>
     <p id="top-title">Atom596.com</p>
-    <div id="navbar">
-        <!-- <p id="navbar-title">Atom596.com</p> -->
+    <div id="navbar" style="vertical-align:middle;">
+        <!-- <div class="navbar-extra">
+            <p>Atom596.com</p>
+        </div> -->
         <NavButton text="Home" onClick={() => { window.location.href = "/"; }} />
         <NavButton text="OLD: Dev Notes" onClick={() => { window.location.href = "/devnotes/index.html"; }} />
-        <!-- <div style="background:red;width:240px;display:inline-block;">
+        <!-- <div class="navbar-extra">
             <NavButton text="Settings" onClick={() => {}} />
         </div> -->
     </div>

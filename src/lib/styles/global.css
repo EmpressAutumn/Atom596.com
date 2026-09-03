@@ -34,12 +34,22 @@ html {
     text-align: center;
 }
 
-#navbar-title {
+#navbar > * {
+    display: inline-flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.navbar-extra {
+    width: 280px;
+
+    /* background: red; */
+}
+
+.navbar-extra > p {
     font-size: xx-large;
     font-family: "ParkLaneNF", serif;
-    text-align: center;
     color: burlywood;
-    display: inline-block;
 }
 
 #content-section {
@@ -54,16 +64,4 @@ html {
     margin-bottom: 10px;
 
     background: rgb(62, 62, 62);
-}
-
-p {
-    color: antiquewhite;
-}
-
-a {
-    color: goldenrod;
-    text-decoration: underline;
-}
-
-h1 {
 }
