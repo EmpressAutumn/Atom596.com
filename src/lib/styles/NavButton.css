@@ -1,0 +1,29 @@
+#text-area {
+    fill: maroon;
+    stroke: goldenrod;
+    stroke-width: 1;
+}
+
+.triangle-horizontal {
+    fill: none;
+    stroke: goldenrod;
+    stroke-width: 1;
+}
+
+.triangle-vertical {
+    fill: none;
+    stroke: darkgoldenrod;
+    stroke-width: 1;
+}
+
+.bracket {
+    fill: antiquewhite;
+    stroke: darkgoldenrod;
+    stroke-width: 1;
+}
+
+.bracket-sheath {
+    fill: none;
+    stroke: darkgoldenrod;
+    stroke-width: 2;
+}
