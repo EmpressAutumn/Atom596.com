@@ -1,15 +1,59 @@
-/* Common Style Code */
-
 @import "tailwindcss";
 
 /* Park Lane NF by Nick Curtis: https://www.1001fonts.com/parklane-font.html */
 @font-face {
     font-family: "ParkLaneNF";
-    src: url("/fonts/ParkLaneNF.ttf");
+    src: url("$lib/assets/fonts/ParkLaneNF.ttf");
+}
+
+:root {
+    --topbar-height: 0px;
 }
 
 html {
+    background: url("$lib/assets/backgrounds/red_budi_hariyanto.jpg");
+    background-size: 18%;
+}
+
+#top-section {
+    width: 100%;
+    position: fixed;
+
     background: rgb(31, 31, 31);
+}
+
+#top-title {
+    font-size: xxx-large;
+    font-family: "ParkLaneNF", serif;
+    text-align: center;
+    color: burlywood;
+}
+
+#navbar {
+    width: 100%;
+    text-align: center;
+}
+
+#navbar-title {
+    font-size: xx-large;
+    font-family: "ParkLaneNF", serif;
+    text-align: center;
+    color: burlywood;
+    display: inline-block;
+}
+
+#content-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#contents {
+    width: 80%;
+    margin-top: calc(10px + var(--topbar-height));
+    margin-bottom: 10px;
+
+    background: rgb(62, 62, 62);
 }
 
 p {
@@ -22,7 +66,4 @@ a {
 }
 
 h1 {
-    font-size: xxx-large;
-    font-family: "ParkLaneNF", serif;
-    color: burlywood;
 }
