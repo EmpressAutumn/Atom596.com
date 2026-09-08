@@ -3,10 +3,11 @@
     import SvelteMarkdown from "@humanspeak/svelte-markdown"
     import { onMount } from "svelte";
 
-    let articleMarkdown = "";
-    let title = "";
-    let authorAndDate = "";
-    let tags = "";
+    $: articleMarkdown = "";
+    $: title = "";
+    $: subtitle = "";
+
+    $: pageTitle = "";
 
     onMount(() => {
         const urlArticle = new URLSearchParams(window.location.search).get("note");
@@ -18,26 +19,23 @@
                     url.searchParams.append("note", Object.keys(articles)[0]);
                     window.location.href = url.toString();
                 } else {
-                    title = articles[urlArticle].title;
-                    authorAndDate = articles[urlArticle].author + " | " + articles[urlArticle].date;
-                    tags = articles[urlArticle].tags;
-
                     let blogpostsElement = document.getElementById("blogposts");
                     if (blogpostsElement) {
-                        Object.keys(articles).forEach(article => {
-                            let title;
-                            if (article === urlArticle) {
-                                let t = articles[article].title;
-                                title = `<p class="author-date"><b>${t}</b></p>`
+                        Object.keys(articles).forEach(articleKey => {
+                            let titleHTML = "";
+                            if (articleKey === urlArticle) {
+                                title = articles[articleKey].title;
+                                subtitle = `${articles[articleKey].author} | ${articles[articleKey].date}`;
+                                pageTitle = `${title} | DevNotes`;
+                                titleHTML = `<p class="author-date"><b>${articles[articleKey].title}</b></p>`;
                             } else {
-                                let t = articles[article].title;
-                                title = `<p class="author-date"><a href="/devnotes?note=${article}" data-sveltekit-reload><b>${t}</b></a></p>`
+                                titleHTML = `<p class="author-date"><a href="/devnotes?note=${articleKey}" data-sveltekit-reload><b>${articles[articleKey].title}</b></a></p>`;
                             }
-                            const author = articles[article].author;
-                            const date = articles[article].date;
+                            const author = articles[articleKey].author;
+                            const date = articles[articleKey].date;
                             blogpostsElement.innerHTML += `
                         <div class="blogpost">
-                            ${title}
+                            ${titleHTML}
                             <p class="author-date">${author}</p>
                             <p class="author-date">${date}</p>
                         </div>`;
@@ -53,13 +51,16 @@
     });
 </script>
 
+<svelte:head>
+    <title>{pageTitle}</title>
+</svelte:head>
+
 <h1>Dev Notes</h1>
 <div class="blogposts" id="blogposts"></div>
 <div class="titlecontainer">
     <div class="titlebox">
         <h2 class="title" id="title">{title}</h2>
-        <p class="author-date" id="author-date">{authorAndDate}</p>
-        <p class="tags" id="tags">{tags}</p>
+        <p class="author-date" id="author-date">{subtitle}</p>
     </div>
 </div>
 <div class="article"><SvelteMarkdown source={articleMarkdown} /></div>
