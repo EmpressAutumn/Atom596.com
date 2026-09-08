@@ -16,7 +16,7 @@
             .then(articles => {
                 if (urlArticle === null || !Object.keys(articles).includes(urlArticle)) {
                     const url = new URL(window.location.toString());
-                    url.searchParams.append("note", Object.keys(articles)[0]);
+                    url.searchParams.set("note", Object.keys(articles)[0]);
                     window.location.href = url.toString();
                 } else {
                     let blogpostsElement = document.getElementById("blogposts");
