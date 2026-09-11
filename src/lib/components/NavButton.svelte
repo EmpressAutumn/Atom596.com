@@ -2,7 +2,7 @@
     import "$lib/components/styles/NavButton.css";
 
     export let text = "Button";
-    export let width = 200;
+    export let width = 220;
     export let onClick: () => void = () => {};
 </script>
 
