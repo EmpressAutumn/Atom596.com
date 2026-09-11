@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "$lib/assets/styles/devnotes.css";
+    import "$lib/assets/styles/autumn_insights.css";
     import SvelteMarkdown from "@humanspeak/svelte-markdown"
     import { onMount } from "svelte";
 
@@ -10,13 +10,13 @@
     $: pageTitle = "";
 
     onMount(() => {
-        const urlArticle = new URLSearchParams(window.location.search).get("note");
-        fetch("/devnotes/articles.json")
+        const urlArticle = new URLSearchParams(window.location.search).get("article");
+        fetch("/autumn_insights/articles.json")
             .then(response => { return response.json(); })
             .then(articles => {
                 if (urlArticle === null || !Object.keys(articles).includes(urlArticle)) {
                     const url = new URL(window.location.toString());
-                    url.searchParams.set("note", Object.keys(articles)[0]);
+                    url.searchParams.set("article", Object.keys(articles)[0]);
                     window.location.href = url.toString();
                 } else {
                     let blogpostsElement = document.getElementById("blogposts");
@@ -26,10 +26,10 @@
                             if (articleKey === urlArticle) {
                                 title = articles[articleKey].title;
                                 subtitle = `${articles[articleKey].author} | ${articles[articleKey].date}`;
-                                pageTitle = `${title} | DevNotes`;
+                                pageTitle = `${title} | Autumn Insights`;
                                 titleHTML = `<p class="author-date"><b>${articles[articleKey].title}</b></p>`;
                             } else {
-                                titleHTML = `<p class="author-date"><a href="/devnotes?note=${articleKey}" data-sveltekit-reload><b>${articles[articleKey].title}</b></a></p>`;
+                                titleHTML = `<p class="author-date"><a href="/autumn_insights?article=${articleKey}" data-sveltekit-reload><b>${articles[articleKey].title}</b></a></p>`;
                             }
                             const author = articles[articleKey].author;
                             const date = articles[articleKey].date;
@@ -41,7 +41,7 @@
                         </div>`;
                         })
                     }
-                    fetch(`/devnotes/${urlArticle}.md`)
+                    fetch(`/autumn_insights/${urlArticle}.md`)
                         .then( response => { return response.text(); })
                         .then( text => {
                             articleMarkdown = text;
@@ -55,7 +55,7 @@
     <title>{pageTitle}</title>
 </svelte:head>
 
-<h1>Dev Notes</h1>
+<h1>Autumn Insights</h1>
 <div class="blogposts" id="blogposts"></div>
 <div class="titlecontainer">
     <div class="titlebox">
