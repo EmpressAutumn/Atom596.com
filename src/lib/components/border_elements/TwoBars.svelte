@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "$lib/components/styles/BorderComponents.css";
+    import "$lib/components/styles/ComponentsGlobal.css";
 
     export let width: number;
 </script>

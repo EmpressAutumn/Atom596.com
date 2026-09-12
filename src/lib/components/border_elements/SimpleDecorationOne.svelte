@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "$lib/components/styles/BorderComponents.css";
+    import "$lib/components/styles/ComponentsGlobal.css";
 </script>
 
 <svg width=10 height=8 viewBox="0 0 10 8" class="overflow-visible">
