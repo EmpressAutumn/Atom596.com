@@ -1,14 +1,21 @@
 <script lang="ts">
+    import "$lib/components/styles/BorderComponents.css";
 </script>
 
 <svg width=10 height=8 viewBox="0 0 10 8" class="overflow-visible">
-    <!-- Left Parts -->
-    <path d="M 4,0 0,4 4,8 14,-2 26,10 32,4" style="fill:none;stroke:darkgoldenrod;stroke-width:1" />
-    <path d="M 6,10 18,-2 30,10 34,6" style="fill:none;stroke:darkgoldenrod;stroke-width:1" />
-    <path d="M 0,0 4,0 6,-2 38,-2" style="fill:none;stroke:goldenrod;stroke-width:2" />
-    <path d="M 0,8 4,8 6,10 38,10" style="fill:none;stroke:goldenrod;stroke-width:2" />
+    <!-- Connecting Bars -->
+    <path d="M 0,0 88,0" class="thick-line" />
+    <path d="M 0,3 3,3 4,4 84,4, 85,3 88,3" class="thin-dark-line" />
+    <path d="M 0,8 8,8" class="thick-line" />
+    <path d="M 80,8 88,8" class="thick-line" />
 
-    <!-- Center Square -->
-    <polygon points="44,-5 35,4 44,13 53,4" style="fill:none;stroke:darkgoldenrod;stroke-width:1" />
-    <polygon points="44,-8 32,4 44,16 56,4" style="fill:none;stroke:goldenrod;stroke-width:2" />
+    <!-- Main Decoration Piece -->
+    <path d="M 4,0 16,12 24,4 32,12 44,0 56,12 64,4 72,12 84,0" class="thin-dark-line" />
+    <path d="M 12,12 24,0 36,12 44,4 52,12 64,0 76,12" class="thin-dark-line" />
+    <path d="M 0,0 12,12 36,12" class="thick-line" />
+    <path d="M 52,12 76,12 88,0" class="thick-line" />
+
+    <!-- Central Diamond -->
+    <polygon points="44,7 39,12 44,17 49,12" class="thin-dark-line" />
+    <polygon points="44,4 36,12 44,20 52,12" class="thick-line" />
 </svg>

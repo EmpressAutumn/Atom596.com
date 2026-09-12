@@ -16,10 +16,15 @@
             );
         };
 
+        const createContentFrame = () => {
+            let contentBox = document.getElementById("content-box");
+        };
+
         const observer = new ResizeObserver(updateHeight);
         observer.observe(topbar);
 
         updateHeight();
+        createContentFrame();
 
         return () => observer.disconnect();
     });
@@ -44,7 +49,9 @@
 </div>
 
 <div id="content-section">
-    <div id="contents">
-        {@render children()}
+    <div id="content-box">
+        <div id="contents">
+            {@render children()}
+        </div>
     </div>
 </div>
