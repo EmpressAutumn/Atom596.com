@@ -3,56 +3,74 @@
     import SvelteMarkdown from "@humanspeak/svelte-markdown"
     import { onMount } from "svelte";
 
-    $: articleMarkdown = "";
-    $: title = "";
-    $: subtitle = "";
-
     $: pageTitle = "";
 
+    $: title = "";
+    $: subtitle = "";
+    $: author = "";
+    $: date = "";
+
+    $: articleMarkdown = "";
+
     onMount(() => {
-        const urlArticle = new URLSearchParams(window.location.search).get("article");
+        const thisArticleKey = new URLSearchParams(window.location.search).get("article");
         fetch("/autumn_insights/articles.json")
             .then(response => { return response.json(); })
             .then(articles => {
-                if (urlArticle === null || !Object.keys(articles).includes(urlArticle)) {
+                // Is the article key in the URL missing or invalid?
+                if (thisArticleKey === null || !Object.keys(articles).includes(thisArticleKey)) {
+                    // Set the article key to the most recent article and reload
                     const url = new URL(window.location.toString());
                     url.searchParams.set("article", Object.keys(articles)[0]);
                     window.location.href = url.toString();
                 } else {
                     let blogpostsElement = document.getElementById("blogposts");
                     if (blogpostsElement) {
+                        // Loop through each blog post
                         Object.keys(articles).forEach(articleKey => {
-                            let titleHTML = "";
-                            if (articleKey === urlArticle) {
-                                title = articles[articleKey].title;
-                                subtitle = `${articles[articleKey].author} | ${articles[articleKey].date}`;
-                                pageTitle = `${title} | Autumn Insights`;
-                                titleHTML = `<p class="author-date"><b>${articles[articleKey].title}</b></p>`;
-                            } else {
-                                titleHTML = `<p class="author-date"><a href="/autumn_insights?article=${articleKey}" data-sveltekit-reload><b>${articles[articleKey].title}</b></a></p>`;
+                            // Get blog post metadata
+                            const articleTitle = articles[articleKey].title;
+                            const articleSubtitle = (articles[articleKey].subtitle) ? articles[articleKey].subtitle : "";
+                            const articleAuthor = (articles[articleKey].author) ? articles[articleKey].author : "Autumn";
+                            const articleDate = articles[articleKey].date;
+
+                            if (articleKey === thisArticleKey) {
+                                // Assign the metadata to the global variables
+                                pageTitle = `${articleTitle} | Autumn Insights`
+
+                                title = articleTitle;
+                                subtitle = articleSubtitle;
+                                author = articleAuthor;
+                                date = articleDate;
+
+                                fetch(`/autumn_insights/${thisArticleKey}.md`)
+                                    .then( response => { return response.text(); })
+                                    .then( text => {
+                                        articleMarkdown = text;
+                                    });
                             }
-                            const author = articles[articleKey].author;
-                            const date = articles[articleKey].date;
+
+                            // Add this post to the navbar
                             blogpostsElement.innerHTML += `
                         <div class="blogpost">
-                            ${titleHTML}
+                            ${(articleKey === thisArticleKey) ?
+                                `<p class="author-date"><b>${articles[articleKey].title}</b></p>` :
+                                `<p class="author-date"><a href="/autumn_insights?article=${articleKey}" data-sveltekit-reload>
+                                    <b>${articles[articleKey].title}</b>
+                                </a></p>`
+                            }
                             <p class="author-date">${author}</p>
                             <p class="author-date">${date}</p>
                         </div>`;
                         })
                     }
-                    fetch(`/autumn_insights/${urlArticle}.md`)
-                        .then( response => { return response.text(); })
-                        .then( text => {
-                            articleMarkdown = text;
-                        });
                 }
             });
     });
 </script>
 
 <svelte:head>
-    <title>{pageTitle}</title>
+    <title>{title} | Autumn Insights</title>
 </svelte:head>
 
 <h1>Autumn Insights</h1>
@@ -60,7 +78,9 @@
 <div class="titlecontainer">
     <div class="titlebox">
         <h2 class="title" id="title">{title}</h2>
-        <p class="author-date" id="author-date">{subtitle}</p>
+        <h3>{subtitle}</h3>
+        <p class="author-date" id="author-date">{author}</p>
+        <p class="author-date" id="author-date">{date}</p>
     </div>
 </div>
 <div class="article"><SvelteMarkdown source={articleMarkdown} /></div>
