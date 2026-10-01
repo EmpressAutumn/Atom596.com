@@ -1,0 +1,65 @@
+html {
+    background: url("$lib/assets/backgrounds/red_budi_hariyanto.jpg");
+    background-size: 18%;
+}
+
+#top-section {
+    width: 100%;
+    position: fixed;
+
+    background: rgb(31, 31, 31);
+}
+
+#top-title {
+    font-size: xxx-large;
+    font-family: "ParkLaneNF", serif;
+    text-align: center;
+    color: burlywood;
+}
+
+#navbar {
+    width: 100%;
+    text-align: center;
+}
+
+#navbar > * {
+    display: inline-flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.navbar-extra {
+    width: 280px;
+
+    /* background: red; */
+}
+
+.navbar-extra > p {
+    font-size: xx-large;
+    font-family: "ParkLaneNF", serif;
+    color: burlywood;
+}
+
+#main-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#border-container {
+    position: relative;
+    width: 80%;
+    margin-top: calc(10px + var(--topbar-height));
+    margin-bottom: 10px;
+
+    background: url("$lib/assets/backgrounds/lacquered_cherry_wood_diff_4k.jpg");
+    background-size: 18%;
+}
+
+#content-box {
+    padding: 28px;
+}
+
+.border-component {
+    position: absolute;
+}
