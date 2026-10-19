@@ -1,5 +1,7 @@
 <script lang="ts">
     import "$lib/assets/styles/autumn_insights.css";
+    import { signalPageReady } from "$lib/scripts/pageReady";
+
     import SvelteMarkdown from "@humanspeak/svelte-markdown"
     import { onMount } from "svelte";
 
@@ -34,17 +36,18 @@
                             const author = articles[articleKey].author;
                             const date = articles[articleKey].date;
                             blogpostsElement.innerHTML += `
-                        <div class="blogpost">
-                            ${titleHTML}
-                            <p class="author-date">${author}</p>
-                            <p class="author-date">${date}</p>
-                        </div>`;
+                    <div class="blogpost">
+                        ${titleHTML}
+                        <p class="author-date">${author}</p>
+                        <p class="author-date">${date}</p>
+                    </div>`;
                         })
                     }
                     fetch(`/autumn_insights/${urlArticle}.md`)
                         .then( response => { return response.text(); })
                         .then( text => {
                             articleMarkdown = text;
+                            signalPageReady();
                         });
                 }
             });

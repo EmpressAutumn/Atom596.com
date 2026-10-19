@@ -6,6 +6,7 @@ html {
 #top-section {
     width: 100%;
     position: fixed;
+    top: 0;
 
     background: rgb(31, 31, 31);
 }
@@ -44,6 +45,7 @@ html {
     width: 100%;
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 #border-container {
@@ -62,4 +64,5 @@ html {
 
 .border-component {
     position: absolute;
+    transform-origin: top left;
 }
