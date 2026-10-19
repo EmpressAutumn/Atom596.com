@@ -40,13 +40,15 @@
     });
 
     function updateAppearance(width: number, height: number) {
+        console.log("updateAppearance", width, height);
+
         if (direction == "right" || direction == "left") {
             length = height - 2 * cornerLength;
         } else {
             length = width - 2 * cornerLength;
         }
-        length = width - 2 * cornerLength;
-        console.log(direction, length);
+        //length = height - 2 * cornerLength;
+        console.log(`Total Length:  ${length}`);
 
         let decorationBarRatio: number | undefined;
         let newDecorationNumFit = 0;
@@ -91,10 +93,19 @@
                         decorationList.push("simple");
                     }
                 } else if (newDecorationNumFit % 3 == 1) {
-                    decorationList = ["simple"];
-                    for (let _ = 0; _ < newDecorationNumFit / 2; _++) {
-                        decorationList.push("grand");
-                        decorationList.push("simple");
+                    if (newDecorationNumFit % 2 == 0) {
+                        decorationList = ["grand"];
+                        for (let _ = 0; _ < Math.round(newDecorationNumFit / 3 - 0.5); _++) {
+                            decorationList.push("simple");
+                            decorationList.push("simple");
+                            decorationList.push("grand");
+                        }
+                    } else {
+                        decorationList = ["simple"];
+                        for (let _ = 0; _ < Math.round(newDecorationNumFit / 2 - 0.5); _++) {
+                            decorationList.push("grand");
+                            decorationList.push("simple");
+                        }
                     }
                 } else {
                     decorationList = ["simple", "simple"];
@@ -168,6 +179,7 @@
                 usedWidth += barLength;
             }
         }
+        console.log(`Used width:    ${usedWidth}`);
     }
 </script>
 

@@ -53,21 +53,21 @@
         <!-- Bottom Left --> <div class="border-component" style="top:100%; left:0; rotate:270deg;"><Corner/></div>
 
         <!-- Border edges -->
-        <!-- Top --> <div class="border-component" style="top:0; left:{cornerLength}px;">
+        <!-- Top --> <!--<div class="border-component" style="top:0; left:{cornerLength}px;">
             <Edge
                     simpleDecoration={borderDecorations["simpleOne"]}
                     grandDecoration={borderDecorations["simpleOne"]}
                     cornerLength={cornerLength}
             />
-        </div>
+        </div>-->
 
-        <!-- Right --> <!--<div class="border-component" style="top:{cornerLength}px; left:100%;">
+        <!-- Right --> <div class="border-component" style="top:{cornerLength}px; left:100%;">
             <Edge direction="right"
                   simpleDecoration={borderDecorations["simpleOne"]}
                   grandDecoration={borderDecorations["simpleOne"]}
                   cornerLength={cornerLength}
             />
-        </div>-->
+        </div>
         <!-- Bottom --> <!--<div class="border-component" style="top:100%; left:calc(100% - {cornerLength}px);">
             <Edge direction="bottom"
                   simpleDecoration={borderDecorations["simpleOne"]}
