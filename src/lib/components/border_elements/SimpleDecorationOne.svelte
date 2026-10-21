@@ -2,9 +2,10 @@
     import "$lib/components/styles/ComponentsGlobal.css";
 
     export let decorationNumber: number;
+    export let direction: string;
 </script>
 
-<div id="deco{decorationNumber}" style="position:absolute;">
+<div id="{direction}Deco{decorationNumber}" style="position:absolute;">
     <svg width=88 height=20 viewBox="0 0 88 20" class="overflow-visible">
         <!-- Connecting Bars -->
         <path d="M 0,0 88,0" class="thick-line" />

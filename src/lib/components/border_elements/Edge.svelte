@@ -3,7 +3,7 @@
 
     import TwoBars from "$lib/components/border_elements/TwoBars.svelte";
 
-    export let direction="top";
+    export let direction="up";
     export let simpleDecoration: [Component, number];
     export let grandDecoration: [Component, number];
     export let cornerLength: number;
@@ -13,7 +13,7 @@
     let rotation: number;
 
     const avgDecoWidth = (simpleDecoration[1] + grandDecoration[1]) / 2;
-    const desiredBarRatio = 2;
+    const desiredBarRatio = 1.5;
 
     let decorationNumFit = 0;
     let decorationList: string[] = [];
@@ -33,22 +33,20 @@
         }
 
         rotation = (direction == "right") ? 90:
-            (direction == "bottom") ? 180:
+            (direction == "down") ? 180:
             (direction == "left") ? 270: 0;
 
         return () => observer.disconnect();
     });
 
     function updateAppearance(width: number, height: number) {
-        console.log("updateAppearance", width, height);
-
         if (direction == "right" || direction == "left") {
             length = height - 2 * cornerLength;
+            console.log(`Total Length (height):  ${length}`);
         } else {
             length = width - 2 * cornerLength;
+            console.log(`Total Length (width):   ${length}`);
         }
-        //length = height - 2 * cornerLength;
-        console.log(`Total Length:  ${length}`);
 
         let decorationBarRatio: number | undefined;
         let newDecorationNumFit = 0;
@@ -126,7 +124,8 @@
                         (decorationList[componentNumber - 1] == "simple") ? simpleDecoration[0] : grandDecoration[0], {
                             target: container,
                             props: {
-                                "decorationNumber": componentNumber
+                                "decorationNumber": componentNumber,
+                                "direction": direction
                             }
                         }
                     );
@@ -136,7 +135,8 @@
                         TwoBars, {
                             target: container,
                             props: {
-                                "barNumber": componentNumber
+                                "barNumber": componentNumber,
+                                "direction": direction
                             }
                         }
                     );
@@ -144,8 +144,8 @@
             } else {
                 // Remove excess components
                 for (let componentNumber = decorationNumFit; componentNumber > newDecorationNumFit; componentNumber--) {
-                    document.getElementById(`deco${componentNumber}`)?.remove();
-                    document.getElementById(`bar${componentNumber}`)?.remove();
+                    document.getElementById(`${direction}Deco${componentNumber}`)?.remove();
+                    document.getElementById(`${direction}Bar${componentNumber}`)?.remove();
                 }
             }
 
@@ -159,30 +159,31 @@
         }
         barLength /= decorationNumFit + 1;
 
-        const bar0 = document.getElementById("bar0");
+        const bar0 = document.getElementById(`${direction}Bar0`);
         if (bar0 != null) {
             bar0.style.width = `${barLength + 1}px`;
         }
 
         let usedWidth = barLength;
         for (let componentNumber = 1; componentNumber <= decorationNumFit; componentNumber++) {
-            const thisDecoration = document.getElementById(`deco${componentNumber}`);
+            const thisDecoration = document.getElementById(`${direction}Deco${componentNumber}`);
             if (thisDecoration != null) {
                 thisDecoration.style.left = `${usedWidth}px`;
                 usedWidth += (decorationList[componentNumber - 1] == "simple") ? simpleDecoration[1] : grandDecoration[1];
             }
 
-            const thisBar = document.getElementById(`bar${componentNumber}`);
+            const thisBar = document.getElementById(`${direction}Bar${componentNumber}`);
             if (thisBar != null) {
                 thisBar.style.width = `${barLength + 1}px`;
                 thisBar.style.left = `${usedWidth}px`;
                 usedWidth += barLength;
             }
         }
-        console.log(`Used width:    ${usedWidth}`);
+        console.log(`Used length:            ${usedWidth}`);
+        console.log("");
     }
 </script>
 
 <div bind:this={container} style="position:relative; transform-origin:top left; rotate:{rotation}deg;">
-    <TwoBars barNumber={0} />
+    <TwoBars barNumber={0} direction={direction} />
 </div>
