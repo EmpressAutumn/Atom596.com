@@ -1,12 +1,7 @@
 {
-    "storytelling": {
-        "title": "Storytelling",
-        "author": "Autumn",
-        "date": "31 October 2024"
-    },
-    "the_passing_seasons": {
-        "title": "The Passing Seasons",
-        "author": "Autumn",
-        "date": "21 September 2023"
+    "placeholder": {
+        "title": "Placeholder",
+        "subtitle": "This is a placeholder!",
+        "date": "21 October 2026"
     }
 }
