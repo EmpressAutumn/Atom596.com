@@ -1,0 +1,23 @@
+.thick-line {
+    fill: none;
+    stroke: goldenrod;
+    stroke-width: 2px;
+}
+
+.thin-line {
+     fill: none;
+     stroke: goldenrod;
+     stroke-width: 1px;
+ }
+
+.thick-dark-line {
+    fill: none;
+    stroke: darkgoldenrod;
+    stroke-width: 2px;
+}
+
+.thin-dark-line {
+    fill: none;
+    stroke: darkgoldenrod;
+    stroke-width: 1px;
+}
