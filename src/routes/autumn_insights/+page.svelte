@@ -9,8 +9,6 @@
     $: author = "";
     $: date = "";
 
-    $: pageTitle = "";
-
     onMount(() => {
         const thisArticleKey = new URLSearchParams(window.location.search).get("article");
         fetch("/autumn_insights/articles.json")
@@ -35,8 +33,6 @@
 
                             if (articleKey === thisArticleKey) {
                                 // Assign the metadata to the global variables
-                                pageTitle = `${articleTitle} | Autumn Insights`
-
                                 title = articleTitle;
                                 subtitle = articleSubtitle;
                                 author = articleAuthor;
