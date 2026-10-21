@@ -42,10 +42,8 @@
     function updateAppearance(width: number, height: number) {
         if (direction == "right" || direction == "left") {
             length = height - 2 * cornerLength;
-            console.log(`Total Length (height):  ${length}`);
         } else {
             length = width - 2 * cornerLength;
-            console.log(`Total Length (width):   ${length}`);
         }
 
         let decorationBarRatio: number | undefined;
@@ -179,8 +177,6 @@
                 usedWidth += barLength;
             }
         }
-        console.log(`Used length:            ${usedWidth}`);
-        console.log("");
     }
 </script>
 

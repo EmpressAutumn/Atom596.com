@@ -6,21 +6,26 @@
     $: articleMarkdown = "";
     $: title = "";
     $: subtitle = "";
+    $: author = "";
+    $: date = "";
 
     $: pageTitle = "";
 
     onMount(() => {
-        const urlArticle = new URLSearchParams(window.location.search).get("article");
+        const thisArticleKey = new URLSearchParams(window.location.search).get("article");
         fetch("/autumn_insights/articles.json")
             .then(response => { return response.json(); })
             .then(articles => {
-                if (urlArticle === null || !Object.keys(articles).includes(urlArticle)) {
+                // Is the article key in the URL missing or invalid?
+                if (thisArticleKey === null || !Object.keys(articles).includes(thisArticleKey)) {
+                    // Set the article key to the most recent article and reload
                     const url = new URL(window.location.toString());
                     url.searchParams.set("article", Object.keys(articles)[0]);
                     window.location.href = url.toString();
                 } else {
                     let blogpostsElement = document.getElementById("blogposts");
                     if (blogpostsElement) {
+                        // Loop through each blog post
                         Object.keys(articles).forEach(articleKey => {
                             // Get blog post metadata
                             const articleTitle = articles[articleKey].title;
@@ -58,11 +63,6 @@
                         </div>`;
                         })
                     }
-                    fetch(`/autumn_insights/${urlArticle}.md`)
-                        .then( response => { return response.text(); })
-                        .then( text => {
-                            articleMarkdown = text;
-                        });
                 }
             });
     });
