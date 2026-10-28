@@ -5,6 +5,7 @@
     import { onMount } from "svelte";
 
     const articles = [
+        "placeholder",
         "storytelling",
         "the_passing_seasons"
     ];
