@@ -1,81 +1,82 @@
 <script lang="ts">
     import "$lib/assets/styles/autumn_insights.css";
     import SvelteMarkdown from "@humanspeak/svelte-markdown"
+    import matter from "@11ty/gray-matter";
     import { onMount } from "svelte";
 
-    $: articleMarkdown = "";
-    $: title = "";
-    $: subtitle = "";
-    $: author = "";
-    $: date = "";
+    const articles = [
+        "storytelling",
+        "the_passing_seasons"
+    ];
+
+    let articlesBar: HTMLDivElement;
+
+    $: thisArticleMarkdown = "";
+    $: thisArticleData = {
+        "title": "",
+        "subtitle": "",
+        "author": "",
+        "date": ""
+    } as { [p: string]: any };
+
+    const loadItems = async () => {
+        const urlArticleKey = new URLSearchParams(window.location.search).get("article");
+        const thisArticleKey = (urlArticleKey === null || articles.indexOf(urlArticleKey) == -1) ? articles[0] : urlArticleKey;
+
+        for (const articleKey of articles) {
+            const articleObject = matter(await((await fetch(`/autumn_insights/${articleKey}.md`)).text()));
+
+            let articleData = articleObject.data;
+            if (articleData.author === undefined) {
+                articleData["author"] = "Autumn";
+            }
+
+            let articleBarTitle: string;
+
+            if (articleKey == thisArticleKey) {
+                thisArticleMarkdown = articleObject.content;
+                thisArticleData = articleData;
+
+                articleBarTitle = `
+                    <p class="author-date">
+                            <b>${articleData.title}</b>
+                    </p>`;
+            } else {
+                articleBarTitle = `
+                    <p class="author-date">
+                        <a href="/autumn_insights?article=${articleKey}" data-sveltekit-reload>
+                            <b>${articleData.title}</b>
+                        </a>
+                    </p>`;
+            }
+
+            articlesBar.innerHTML += `
+                <div class="blogpost">
+                    ${articleBarTitle}
+                    <p class="author-date">${articleData.author}</p>
+                    <p class="author-date">${articleData.date}</p>
+                </div>`;
+        }
+
+    };
 
     onMount(() => {
-        const thisArticleKey = new URLSearchParams(window.location.search).get("article");
-        fetch("/autumn_insights/articles.json")
-            .then(response => { return response.json(); })
-            .then(articles => {
-                // Is the article key in the URL missing or invalid?
-                if (thisArticleKey === null || !Object.keys(articles).includes(thisArticleKey)) {
-                    // Set the article key to the most recent article and reload
-                    const url = new URL(window.location.toString());
-                    url.searchParams.set("article", Object.keys(articles)[0]);
-                    window.location.href = url.toString();
-                } else {
-                    let blogpostsElement = document.getElementById("blogposts");
-                    if (blogpostsElement) {
-                        // Loop through each blog post
-                        Object.keys(articles).forEach(articleKey => {
-                            // Get blog post metadata
-                            const articleTitle = articles[articleKey].title;
-                            const articleSubtitle = (articles[articleKey].subtitle) ? articles[articleKey].subtitle : "";
-                            const articleAuthor = (articles[articleKey].author) ? articles[articleKey].author : "Autumn";
-                            const articleDate = articles[articleKey].date;
-
-                            if (articleKey === thisArticleKey) {
-                                // Assign the metadata to the global variables
-                                title = articleTitle;
-                                subtitle = articleSubtitle;
-                                author = articleAuthor;
-                                date = articleDate;
-
-                                fetch(`/autumn_insights/${thisArticleKey}.md`)
-                                    .then( response => { return response.text(); })
-                                    .then( text => {
-                                        articleMarkdown = text;
-                                    });
-                            }
-
-                            // Add this post to the navbar
-                            blogpostsElement.innerHTML += `
-                        <div class="blogpost">
-                            ${(articleKey === thisArticleKey) ?
-                                `<p class="author-date"><b>${articles[articleKey].title}</b></p>` :
-                                `<p class="author-date"><a href="/autumn_insights?article=${articleKey}" data-sveltekit-reload>
-                                    <b>${articles[articleKey].title}</b>
-                                </a></p>`
-                            }
-                            <p class="author-date">${author}</p>
-                            <p class="author-date">${date}</p>
-                        </div>`;
-                        })
-                    }
-                }
-            });
+        loadItems();
     });
 </script>
 
 <svelte:head>
-    <title>{title} | Autumn Insights</title>
+    <title>{thisArticleData.title} | Autumn Insights</title>
 </svelte:head>
 
 <h1>Autumn Insights</h1>
-<div class="blogposts" id="blogposts"></div>
+<div class="blogposts" id="blogposts" bind:this={articlesBar}></div>
 <div class="titlecontainer">
     <div class="titlebox">
-        <h2 class="title" id="title">{title}</h2>
-        <h3>{subtitle}</h3>
-        <p class="author-date" id="author-date">{author}</p>
-        <p class="author-date" id="author-date">{date}</p>
+        <h2 class="title" id="title">{thisArticleData.title}</h2>
+        <h3>{thisArticleData.subtitle}</h3>
+        <p class="author-date" id="author-date">{thisArticleData.author}</p>
+        <p class="author-date" id="author-date">{thisArticleData.date}</p>
     </div>
 </div>
-<div class="article"><SvelteMarkdown source={articleMarkdown} /></div>
+<div class="article"><SvelteMarkdown source={thisArticleMarkdown} /></div>

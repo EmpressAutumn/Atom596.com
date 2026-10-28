@@ -1,3 +1,9 @@
+---
+title: Storytelling
+subtitle: 
+date: 31st of October 2024
+---
+
 I love a good, well-thought-out story. In all the media that I consume, the main thing that pulls me in is usually the
 overall story. A lot of the time, I find myself excusing the shortcomings of some media because it has an interesting
 plot or setting. One example of this is Helluva Boss, set in Hell and influenced by a lot of non-canonical Christian
