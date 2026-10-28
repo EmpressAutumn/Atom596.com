@@ -1,3 +1,9 @@
+---
+title: The Passing Seasons
+subtitle: 
+date: 21st of September 2023
+---
+
 It's that time of year again. The first leaves are starting to turn orange and red, and some have even begun to litter
 the ground. Yes, autumn is only a mere two days away.
 
